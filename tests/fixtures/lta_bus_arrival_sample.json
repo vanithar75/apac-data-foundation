@@ -1,0 +1,63 @@
+{
+  "BusStopCode": "83139",
+  "Services": [
+    {
+      "ServiceNo": "15",
+      "Operator": "SBST",
+      "Status": "In Operation",
+      "NextBus": {
+        "OriginCode": "77009",
+        "DestinationCode": "77009",
+        "EstimatedArrival": "2026-06-27T10:15:00+08:00",
+        "Latitude": "1.349590",
+        "Longitude": "103.956787",
+        "Load": "SEA"
+      },
+      "NextBus2": {
+        "OriginCode": "77009",
+        "DestinationCode": "77009",
+        "EstimatedArrival": "2026-06-27T10:28:00+08:00",
+        "Latitude": "1.351200",
+        "Longitude": "103.955100",
+        "Load": "SDA"
+      },
+      "NextBus3": {
+        "OriginCode": "77009",
+        "DestinationCode": "77009",
+        "EstimatedArrival": null,
+        "Latitude": "",
+        "Longitude": "",
+        "Load": ""
+      }
+    },
+    {
+      "ServiceNo": "10",
+      "Operator": "TTS",
+      "Status": "In Operation",
+      "NextBus": {
+        "OriginCode": "77071",
+        "DestinationCode": "77101",
+        "EstimatedArrival": "2026-06-27T10:12:00+08:00",
+        "Latitude": "1.348100",
+        "Longitude": "103.954000",
+        "Load": "LSD"
+      },
+      "NextBus2": {
+        "OriginCode": "77071",
+        "DestinationCode": "77101",
+        "EstimatedArrival": null,
+        "Latitude": "",
+        "Longitude": "",
+        "Load": ""
+      },
+      "NextBus3": {
+        "OriginCode": "77071",
+        "DestinationCode": "77101",
+        "EstimatedArrival": null,
+        "Latitude": "",
+        "Longitude": "",
+        "Load": ""
+      }
+    }
+  ]
+}
