@@ -91,8 +91,23 @@ Runs bronze→gold on fixture data and enforces schema fingerprints + row minimu
 | 1 | Repo scaffold | Done |
 | 2 | LTA bus arrival pipeline | Done |
 | 3–5 | NEA, SingStat, IMD | **Deferred** |
-| 6 | Data quality CI | **Done** |
-| 7 | Lineage + metadata | **Done** |
+| 6 | Data quality CI | Done |
+| 7 | Lineage + metadata | Done |
+| 8 | MVP review & close | **Done** |
+
+## Definition of Done (LTA reference MVP)
+
+MVP closes on **one reference dataset** (LTA Bus Arrival) with a reusable platform pattern. Additional catalog datasets (NEA, SingStat, IMD) are deferred.
+
+- [x] Repo with bronze/silver/gold structure
+- [x] LTA end-to-end pipeline (bronze → silver → gold)
+- [x] Lineage documentation and metadata (`docs/lineage.md`, `docs/metadata/`)
+- [x] CI passes data quality smoke tests (fixture gate + pytest)
+- [x] Decision log with license and residency entries
+- [x] Ingest guardrails (max stops per run)
+- [ ] Additional datasets (NEA, SingStat, IMD) — deferred to D2+
+
+**Repo:** [github.com/vanithar75/apac-data-foundation](https://github.com/vanithar75/apac-data-foundation)
 
 ## License
 

@@ -65,7 +65,16 @@ Format: date, context, decision, rationale, consequences.
 
 ---
 
-## Pending decisions
+## 2026-06-27 — Phase 8 MVP close (LTA reference pattern)
+
+| Field | Value |
+|-------|-------|
+| **Context** | Phases 6–7 complete; NEA/SingStat/IMD deferred per scope decision |
+| **Decision** | Close D1 MVP on LTA-only reference pipeline; status **MVP done** |
+| **Rationale** | Platform pattern (medallion, CI, lineage, guardrails) is the portfolio deliverable |
+| **Consequences** | INDEX + Notion updated; D2 unblocked when additional SG datasets are needed |
+
+---
 
 - [x] LTA API endpoint and rate-limit caching strategy (Phase 2)
 - [ ] data.gov.in API key storage (`.env`, not committed) — when IMD is picked up
