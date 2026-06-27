@@ -1,4 +1,4 @@
-# Data Lineage — D1 MVP
+# Data Lineage
 
 **Scope (current):** LTA Bus Arrival only. NEA, SingStat, and IMD ingests are **deferred** — platform pattern (quality CI + lineage) is proven on one dataset first.
 
@@ -31,7 +31,7 @@ Gold    data/gold/sg/lta_bus_arrival/lta_bus_arrival_hourly.parquet
 | Source | [LTA DataMall v3](https://datamall2.mytransport.sg/ltaodataservice/v3/BusArrival) | JSON API | `region=sg`, `pii_risk=none`, Open Government Licence |
 | Bronze | `data/bronze/sg/lta_bus_arrival/` | JSON envelope | `retention_days=90` (local policy) |
 | Silver | `.../lta_bus_arrival.parquet` + `.duckdb` | Parquet | Schema fingerprint in quality contract |
-| Gold | `.../lta_bus_arrival_hourly.parquet` + `.duckdb` | Parquet | Aggregates for analytics / D2 downstream |
+| Gold | `.../lta_bus_arrival_hourly.parquet` + `.duckdb` | Parquet | Aggregates for analytics downstream |
 
 ### Quality gates (CI)
 
@@ -52,7 +52,7 @@ GitHub Actions runs this on every push/PR.
 
 ### Portfolio walkthrough (client workshop)
 
-> This repo demonstrates a **governed medallion pattern** on Singapore open transport data: raw API snapshots land in bronze with ingest metadata; silver applies schema normalization and quality gates; gold exposes analytics-ready aggregates. Regional silos (`sg/` vs `in/`) enforce residency discipline before any cross-border mart (D5). CI validates schema drift and null rates on every change using fixture data — no production API dependency in the pipeline gate.
+> This repo demonstrates a **governed medallion pattern** on Singapore open transport data: raw API snapshots land in bronze with ingest metadata; silver applies schema normalization and quality gates; gold exposes analytics-ready aggregates. Regional silos (`sg/` vs `in/`) enforce residency discipline before any cross-border combine. CI validates schema drift and null rates on every change using fixture data — no production API dependency in the pipeline gate.
 
 ---
 
@@ -60,8 +60,6 @@ GitHub Actions runs this on every push/PR.
 
 | Dataset | Portal | Status | Notes |
 |---------|--------|--------|-------|
-| NEA Rainfall | data.gov.sg | Deferred | Add when D2 dashboard needs weather joins |
+| NEA Rainfall | data.gov.sg | Deferred | Weather joins for future dashboards |
 | SingStat sample | data.gov.sg | Deferred | Dimension enrichment |
 | IMD Rainfall | data.gov.in | Deferred | Separate `in/` silo; DPDP note required |
-
-**Catalog:** `VibeCoding_Planner/docs/datasets/apac-catalog.md`

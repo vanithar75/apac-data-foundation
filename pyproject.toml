@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "apac-data-foundation"
 version = "0.1.0"
-description = "APAC open-data medallion lakehouse (Track B D1)"
+description = "APAC open-data medallion lakehouse"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

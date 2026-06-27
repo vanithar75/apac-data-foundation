@@ -1,4 +1,4 @@
-# Decision Log — Project D1: APAC Open Data Foundation
+# Decision Log — APAC Open Data Foundation
 
 Format: date, context, decision, rationale, consequences.
 
@@ -8,10 +8,10 @@ Format: date, context, decision, rationale, consequences.
 
 | Field | Value |
 |-------|-------|
-| **Context** | Empty workspace; kickoff from VibeCoding_Planner D1 brief |
+| **Context** | Greenfield repo; medallion lakehouse MVP for APAC open data |
 | **Decision** | Medallion layout under `data/{bronze,silver,gold}/{sg,in}/`; DuckDB + Parquet stack; Python package `apac_data` |
-| **Rationale** | Matches apac-catalog regional silo pattern; free-tier local dev; unblocks D2–D5 |
-| **Consequences** | SG and IN data stay in separate paths until D5 governance layer |
+| **Rationale** | Regional silo pattern; free-tier local dev; reusable platform scaffold |
+| **Consequences** | SG and IN data stay in separate paths until a governed cross-region layer is added |
 
 ---
 
@@ -60,8 +60,8 @@ Format: date, context, decision, rationale, consequences.
 |-------|-------|
 | **Context** | MVP value is the platform pattern (medallion, CI gates, lineage), not dataset count |
 | **Decision** | Defer NEA, SingStat, IMD; implement data quality CI + lineage on LTA only |
-| **Rationale** | One reference pipeline with CI/schema drift beats four shallow ingests; stays within Cursor Pro (fixture CI, no API) |
-| **Consequences** | D1 MVP closes on LTA; other sources reuse contract when D2+ needs them |
+| **Rationale** | One reference pipeline with CI/schema drift beats four shallow ingests; fixture-based CI avoids live API dependency |
+| **Consequences** | MVP closes on LTA; other sources can reuse the same quality-contract pattern later |
 
 ---
 
@@ -70,9 +70,9 @@ Format: date, context, decision, rationale, consequences.
 | Field | Value |
 |-------|-------|
 | **Context** | Phases 6–7 complete; NEA/SingStat/IMD deferred per scope decision |
-| **Decision** | Close D1 MVP on LTA-only reference pipeline; status **MVP done** |
-| **Rationale** | Platform pattern (medallion, CI, lineage, guardrails) is the portfolio deliverable |
-| **Consequences** | INDEX + Notion updated; D2 unblocked when additional SG datasets are needed |
+| **Decision** | Close MVP on LTA-only reference pipeline |
+| **Rationale** | Platform pattern (medallion, CI, lineage, guardrails) is the primary deliverable |
+| **Consequences** | Downstream analytics can consume gold/silver contracts when additional datasets are added |
 
 ---
 

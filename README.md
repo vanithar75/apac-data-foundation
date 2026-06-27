@@ -1,8 +1,6 @@
 # APAC Open Data Foundation
 
-**Track B D1** — Medallion lakehouse over free Singapore and India open government datasets.
-
-Part of the [VibeCoding Planner](https://app.notion.com/p/385818bdc73d81d38e34f1b651ad29c8) portfolio. Charter: `VibeCoding_Planner/projects/D1-apac-data-foundation/brief.md`. MVP plan: [Notion](https://app.notion.com/p/38c818bdc73d81bb8683d150e5a48336).
+Medallion lakehouse over free Singapore and India open government datasets.
 
 ## Problem
 
@@ -21,7 +19,7 @@ src/apac_data/
 └── transform/        ← silver/gold promotion
 ```
 
-Singapore and India data stay in **separate regional silos** for MVP (PDPA/DPDP). Cross-border joins deferred to D5.
+Singapore and India data stay in **separate regional silos** for MVP (PDPA/DPDP). Cross-border joins are not combined in this MVP.
 
 ## MVP scope (current)
 
@@ -32,7 +30,7 @@ Singapore and India data stay in **separate regional silos** for MVP (PDPA/DPDP)
 | SingStat sample | data.gov.sg | SG | Deferred |
 | IMD Rainfall | data.gov.in | IN | Deferred |
 
-Additional sources will follow the same medallion + quality-contract pattern when needed (e.g. D2).
+Additional sources can follow the same medallion + quality-contract pattern when needed.
 
 ## Quick start
 
@@ -73,7 +71,6 @@ Runs bronze→gold on fixture data and enforces schema fingerprints + row minimu
 - **Licenses** — Open Government Licence (SG); attribute sources in README and exports
 - **Decision log** — `docs/decision-log.md`
 - **Lineage** — `docs/lineage.md`
-- **Agent rules** — `VibeCoding_Planner/.cursor/rules/vibe-coding.md`
 
 ## Stack (free tier)
 
@@ -105,7 +102,7 @@ MVP closes on **one reference dataset** (LTA Bus Arrival) with a reusable platfo
 - [x] CI passes data quality smoke tests (fixture gate + pytest)
 - [x] Decision log with license and residency entries
 - [x] Ingest guardrails (max stops per run)
-- [ ] Additional datasets (NEA, SingStat, IMD) — deferred to D2+
+- [ ] Additional datasets (NEA, SingStat, IMD) — deferred
 
 **Repo:** [github.com/vanithar75/apac-data-foundation](https://github.com/vanithar75/apac-data-foundation)
 
