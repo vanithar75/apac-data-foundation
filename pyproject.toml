@@ -24,6 +24,7 @@ dev = [
 
 [project.scripts]
 apac-lta-pipeline = "apac_data.pipelines.lta_bus_arrival:main"
+apac-check-quality = "apac_data.pipelines.check_quality:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/apac_data"]

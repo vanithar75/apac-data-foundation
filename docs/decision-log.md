@@ -19,10 +19,10 @@ Format: date, context, decision, rationale, consequences.
 
 | Dataset | Portal | Region | License | PII risk | Status |
 |---------|--------|--------|---------|----------|--------|
-| LTA Bus Arrival | LTA DataMall | SG | Open Government Licence | none | **In progress (Phase 2)** |
-| NEA Rainfall | data.gov.sg | SG | Open Government Licence | none | Planned (Phase 3) |
-| SingStat sample | data.gov.sg | SG | Open Government Licence | none | Planned (Phase 4) |
-| IMD Rainfall | data.gov.in | IN | Government Open Data | none | Planned (Phase 5) |
+| LTA Bus Arrival | LTA DataMall | SG | Open Government Licence | none | **Active** (pipeline + CI) |
+| NEA Rainfall | data.gov.sg | SG | Open Government Licence | none | **Deferred** |
+| SingStat sample | data.gov.sg | SG | Open Government Licence | none | **Deferred** |
+| IMD Rainfall | data.gov.in | IN | Government Open Data | none | **Deferred** |
 
 **Residency:** Singapore datasets processed in `*/sg/` paths only. India datasets in `*/in/` only. No cross-border gold joins in MVP.
 
@@ -52,8 +52,21 @@ Format: date, context, decision, rationale, consequences.
 
 ---
 
+---
+
+## 2026-06-27 — Deprioritize additional datasets; finish quality + lineage on LTA
+
+| Field | Value |
+|-------|-------|
+| **Context** | MVP value is the platform pattern (medallion, CI gates, lineage), not dataset count |
+| **Decision** | Defer NEA, SingStat, IMD; implement data quality CI + lineage on LTA only |
+| **Rationale** | One reference pipeline with CI/schema drift beats four shallow ingests; stays within Cursor Pro (fixture CI, no API) |
+| **Consequences** | D1 MVP closes on LTA; other sources reuse contract when D2+ needs them |
+
+---
+
 ## Pending decisions
 
 - [x] LTA API endpoint and rate-limit caching strategy (Phase 2)
-- [ ] data.gov.in API key storage (`.env`, not committed)
-- [ ] SingStat table selection for MVP slice (Phase 4)
+- [ ] data.gov.in API key storage (`.env`, not committed) — when IMD is picked up
+- [ ] SingStat table selection — when deferred ingest resumes

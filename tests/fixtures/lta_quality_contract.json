@@ -1,0 +1,7 @@
+{
+  "dataset": "lta_bus_arrival",
+  "silver_schema_fingerprint": "66cb66d6c3a9c14d",
+  "gold_schema_fingerprint": "8458da9df5052397",
+  "min_silver_rows": 6,
+  "min_gold_rows": 2
+}

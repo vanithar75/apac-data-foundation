@@ -36,6 +36,14 @@ SILVER_COLUMNS = (
 
 ARRIVAL_SLOTS = ("NextBus", "NextBus2", "NextBus3")
 
+GOLD_COLUMNS = (
+    "bus_stop_code",
+    "service_no",
+    "arrival_hour",
+    "arrival_count",
+    "ingest_date",
+)
+
 
 def _parse_bronze_file(path: Path) -> list[dict[str, Any]]:
     envelope = json.loads(path.read_text(encoding="utf-8"))
@@ -109,15 +117,7 @@ def silver_to_gold(silver_path: Path | None = None) -> Path:
     df = pd.read_parquet(silver_path)
 
     if df.empty:
-        gold = pd.DataFrame(
-            columns=[
-                "bus_stop_code",
-                "service_no",
-                "arrival_hour",
-                "arrival_count",
-                "ingest_date",
-            ]
-        )
+        gold = pd.DataFrame(columns=list(GOLD_COLUMNS))
     else:
         with_arrival = df.dropna(subset=["estimated_arrival"]).copy()
         with_arrival["arrival_hour"] = with_arrival["estimated_arrival"].dt.floor("h")
@@ -130,6 +130,7 @@ def silver_to_gold(silver_path: Path | None = None) -> Path:
             .size()
             .rename(columns={"size": "arrival_count"})
         )
+        gold = gold[list(GOLD_COLUMNS)]
 
     out_path = GOLD_DIR / "lta_bus_arrival_hourly.parquet"
     gold.to_parquet(out_path, index=False)

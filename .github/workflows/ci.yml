@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  test:
+  data-quality:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,10 +17,17 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -e .
+
+      - name: Data quality gate (fixture pipeline, no API key)
+        env:
+          LTA_USE_FIXTURE: "1"
+        run: python -m apac_data.pipelines.check_quality
 
       - name: Lint
         run: ruff check src tests
 
-      - name: Test
+      - name: Unit tests
+        env:
+          LTA_USE_FIXTURE: "1"
         run: pytest -q

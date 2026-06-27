@@ -1,0 +1,27 @@
+dataset: lta_bus_arrival
+region: sg
+source_portal: lta_datamall
+source_url: https://datamall2.mytransport.sg/ltaodataservice/v3/BusArrival
+license: Singapore Open Government Licence
+pii_risk: none
+retention_days: 90
+refresh_cadence: on-demand snapshot (near real-time API)
+
+layers:
+  bronze:
+    path: data/bronze/sg/lta_bus_arrival/
+    format: json
+    partition_key: bus_stop_code, ingested_at_utc
+  silver:
+    path: data/silver/sg/lta_bus_arrival/lta_bus_arrival.parquet
+    table: lta_bus_arrival
+    format: parquet
+    duckdb: data/silver/sg/lta_bus_arrival/lta_bus_arrival.duckdb
+  gold:
+    path: data/gold/sg/lta_bus_arrival/lta_bus_arrival_hourly.parquet
+    table: lta_bus_arrival_hourly
+    format: parquet
+    duckdb: data/gold/sg/lta_bus_arrival/lta_bus_arrival.duckdb
+
+quality_contract: tests/fixtures/lta_quality_contract.json
+ci_entrypoint: python -m apac_data.pipelines.check_quality

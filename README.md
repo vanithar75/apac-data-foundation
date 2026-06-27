@@ -23,14 +23,16 @@ src/apac_data/
 
 Singapore and India data stay in **separate regional silos** for MVP (PDPA/DPDP). Cross-border joins deferred to D5.
 
-## MVP datasets
+## MVP scope (current)
 
-| Dataset | Portal | Region |
-|---------|--------|--------|
-| LTA Bus Arrival | data.gov.sg | SG |
-| NEA Rainfall | data.gov.sg | SG |
-| SingStat sample | data.gov.sg | SG |
-| IMD Rainfall | data.gov.in | IN |
+| Dataset | Portal | Region | Status |
+|---------|--------|--------|--------|
+| LTA Bus Arrival | LTA DataMall | SG | **Active** — pipeline + quality CI + lineage |
+| NEA Rainfall | data.gov.sg | SG | Deferred |
+| SingStat sample | data.gov.sg | SG | Deferred |
+| IMD Rainfall | data.gov.in | IN | Deferred |
+
+Additional sources will follow the same medallion + quality-contract pattern when needed (e.g. D2).
 
 ## Quick start
 
@@ -57,6 +59,14 @@ python -m apac_data.pipelines.lta_bus_arrival --stops 83139,01012
 # LTA_ALLOW_LARGE_INGEST=1 python -m apac_data.pipelines.lta_bus_arrival --allow-large --stops ...
 ```
 
+### Data quality CI (fixture only — no API usage)
+
+```bash
+LTA_USE_FIXTURE=1 python -m apac_data.pipelines.check_quality
+```
+
+Runs bronze→gold on fixture data and enforces schema fingerprints + row minimums. GitHub Actions runs this on every push/PR.
+
 ## Governance
 
 - **No PII** — aggregated open government data only
@@ -79,10 +89,10 @@ python -m apac_data.pipelines.lta_bus_arrival --stops 83139,01012
 | Phase | Scope | Status |
 |-------|-------|--------|
 | 1 | Repo scaffold | Done |
-| 2 | LTA bus arrival pipeline | **Done** |
-| 3–5 | NEA, SingStat, IMD | Planned |
-| 6 | Data quality CI | Planned |
-| 7 | Lineage docs | Planned |
+| 2 | LTA bus arrival pipeline | Done |
+| 3–5 | NEA, SingStat, IMD | **Deferred** |
+| 6 | Data quality CI | **Done** |
+| 7 | Lineage + metadata | **Done** |
 
 ## License
 

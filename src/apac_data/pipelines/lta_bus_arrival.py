@@ -8,7 +8,7 @@ import pandas as pd
 
 from apac_data.config import use_fixture_ingest
 from apac_data.ingest import lta_bus_arrival as ingest_lta
-from apac_data.quality.lta_bus_arrival import validate_silver
+from apac_data.quality.lta_bus_arrival import validate_gold, validate_silver
 from apac_data.transform import lta_bus_arrival as transform_lta
 
 
@@ -47,9 +47,9 @@ def main() -> None:
 
     silver_path, gold_path = transform_lta.run_promotion(bronze_paths)
     silver_df = pd.read_parquet(silver_path)
-    validate_silver(silver_df)
-
     gold_df = pd.read_parquet(gold_path)
+    validate_silver(silver_df)
+    validate_gold(gold_df)
     print(f"Silver: {silver_path} ({len(silver_df)} rows)")
     print(f"Gold:   {gold_path} ({len(gold_df)} rows)")
 
